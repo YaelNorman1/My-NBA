@@ -17,12 +17,14 @@ teams_id = {
 @app.get("/players/{year}/{team_name}")
 async def get_players_per_year_team(year, team_name):
     team_id = teams_id.get(team_name) 
+    players =[]
     res =  requests.get(f'http://data.nba.net/10s/prod/v1/{year}/players.json')
     league_list = res.json()["league"]
     for league in league_list:
-        # print(league)
         players = [player for player in league_list[league] if player["teamId"] == team_id]
-    
+        # for player in league_list[league]:
+        #     if player["teamId"] == team_id:
+        #         players.append(player)
     return players
     
 
