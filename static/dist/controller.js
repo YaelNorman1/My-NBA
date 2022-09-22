@@ -1,5 +1,5 @@
 "use strict";
+const playersDataModule = new PlayersDataModule();
 $("#submitPlayers").on("click", function () {
-    console.log("in btn");
 });
 //# sourceMappingURL=controller.js.map
