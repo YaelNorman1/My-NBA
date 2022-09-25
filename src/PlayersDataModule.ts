@@ -6,15 +6,17 @@ class PlayersDataModule {
         this.playersTeam= {} as Player []
     }
 
-    async getTeamPlayers() {
-        const response= await $.get(`/players/{year}/{team_name}`);
-        console.log(response);
+    async getTeamPlayers(dataFromUser: object) {
+        type ObjectKey = keyof typeof dataFromUser;
+        const year = 'year' as ObjectKey
+        const teamName = 'team_name' as ObjectKey
+        const response= await $.get(`/players/${dataFromUser[year]}/${dataFromUser[teamName]}`);
         return response;
     }
-    
-    async generateNewTeamPlayers(){       
-        await this.getTeamPlayers().then(players => {
-            
+
+    async generateNewTeamPlayers(dataFromUser: object){       
+        await this.getTeamPlayers(dataFromUser).then(players => {
+            console.log(players)
         })
     }
 

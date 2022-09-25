@@ -12,16 +12,18 @@ class PlayersDataModule {
     constructor() {
         this.playersTeam = {};
     }
-    getTeamPlayers() {
+    getTeamPlayers(dataFromUser) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield $.get(`/players/{year}/{team_name}`);
-            console.log(response);
+            const year = 'year';
+            const teamName = 'team_name';
+            const response = yield $.get(`/players/${dataFromUser[year]}/${dataFromUser[teamName]}`);
             return response;
         });
     }
-    generateNewTeamPlayers() {
+    generateNewTeamPlayers(dataFromUser) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.getTeamPlayers().then(players => {
+            yield this.getTeamPlayers(dataFromUser).then(players => {
+                console.log(players);
             });
         });
     }
