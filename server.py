@@ -5,6 +5,7 @@ from starlette.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 import requests
 import uvicorn
+import json
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -30,7 +31,7 @@ async def get_players_per_year_team(year, team_name):
         for player in league_list[league]:
             if player["teamId"] == team_id:
                 players.append(player)
-    return players
+    return json.dumps(players)
     
 
 

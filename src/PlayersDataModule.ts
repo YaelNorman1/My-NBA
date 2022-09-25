@@ -15,8 +15,18 @@ class PlayersDataModule {
     }
 
     async generateNewTeamPlayers(dataFromUser: object){       
-        await this.getTeamPlayers(dataFromUser).then(players => {
-            console.log(players)
+        await this.getTeamPlayers(dataFromUser).then(data => {
+            console.log(data)
+            let players= JSON.parse(data)
+
+            for (const player of players){
+                console.log(player)
+                const fullName = player.firstName + player.lastName
+                const jerseyNum = player.jersey
+                const position= player.pos          
+                // this.playersTeam.append(new Player())
+            }
+
         })
     }
 
