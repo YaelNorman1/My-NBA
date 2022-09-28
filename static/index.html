@@ -21,17 +21,26 @@
             </div>
             <button type="submit" class="col btn btn-primary" id="submitPlayers">Submit</button>
         </div>
-        <div class="player-container">
-
-        </div>
+        <!-- <div class="card" style="width: 18rem;"> -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="player-container">
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    
     <!-- </form> -->
-
+    
     <script id="player-template" type="text/x-handlebars-template">
-        <div class="player-info">
-            <div>{{player.fname}} {{player.lname}}</div>
-            <div>{{player.jerseyNum}}</div>
-            <img class="player-pic" src="https://nba-players.herokuapp.com/players/{{player.lname}}/{{player.fname}}">
-            <div>{{player.position}}</div>
+        <div class="card rounded text-center player-info" style="width: 400px;">
+            <div class="card-body">
+                <div>{{player.fname}} {{player.lname}}</div>
+                <div>{{player.jerseyNum}}</div>
+                <img class="player-pic" src="https://nba-players.herokuapp.com/players/{{player.lname}}/{{player.fname}}">
+                <div>{{player.position}}</div>
+            </div>
         </div>
     </script>
 
