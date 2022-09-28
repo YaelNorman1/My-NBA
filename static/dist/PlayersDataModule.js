@@ -25,7 +25,7 @@ class PlayersDataModule {
             yield this.getTeamPlayers(dataFromUser).then(data => {
                 // console.log(data)
                 let players = JSON.parse(data);
-                // this.playersTeam= []
+                this.playersTeam.splice(0);
                 for (const player of players) {
                     // console.log(player)
                     const fname = player.firstName;
