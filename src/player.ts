@@ -1,10 +1,12 @@
 class Player{
-    name : string;
+    fname : string;
+    lname : string;
     jerseyNum : number;
     position: string;
 
-    constructor(name: string, jerseyNum: number, position: string){
-        this.name=name
+    constructor(fname: string, lname: string, jerseyNum: number, position: string){
+        this.fname=fname
+        this.lname=lname
         this.jerseyNum=jerseyNum
         this.position=position
     }
