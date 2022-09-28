@@ -3,7 +3,7 @@ class PlayersDataModule {
 
 
     constructor() {
-        this.playersTeam= {} as Player []
+        this.playersTeam= []
     }
 
     async getTeamPlayers(dataFromUser: object) {
@@ -16,18 +16,29 @@ class PlayersDataModule {
 
     async generateNewTeamPlayers(dataFromUser: object){       
         await this.getTeamPlayers(dataFromUser).then(data => {
-            console.log(data)
+            // console.log(data)
             let players= JSON.parse(data)
+            // this.playersTeam= []
 
             for (const player of players){
-                console.log(player)
+                // console.log(player)
                 const fullName = player.firstName + player.lastName
                 const jerseyNum = player.jersey
-                const position= player.pos          
-                // this.playersTeam.append(new Player())
+                const position= player.pos    
+                // let p: Player= new Player (fullName,jerseyNum, position)      
+                this.playersTeam.push({name: fullName, jerseyNum: jerseyNum, position: position})//p
             }
-
+            // console.log(this.playersTeam)
         })
+    }
+
+    getAllPlayers() : object[] {
+
+        const myClonedArray: object[] = [];
+        this.playersTeam.forEach(val => myClonedArray.push(Object.assign({}, val)));     
+
+
+        return myClonedArray
     }
 
 

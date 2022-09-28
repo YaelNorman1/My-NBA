@@ -1,1 +1,1 @@
-{"version":3,"file":"renderPlayers.js","sourceRoot":"","sources":["../../src/renderPlayers.ts"],"names":[],"mappings":";AAAA,iBAAiB;AAGjB,sCAAsC;AACtC,gEAAgE;AAChE,uDAAuD;AAEvD,mBAAmB;AACnB,sCAAsC;AACtC,2BAA2B;AAC3B,gBAAgB;AAChB,QAAQ;AACR,MAAM"}
+{"version":3,"file":"renderPlayers.js","sourceRoot":"","sources":["../../src/renderPlayers.ts"],"names":[],"mappings":";AAAC,MAAM,MAAM;IAET,qBAAqB,CAAC,OAAkB;QACpC,OAAO,CAAC,GAAG,CAAC,OAAO,CAAC,CAAA;IACxB,CAAC;CAGJ;AAOD,kCAAkC;AAClC,4DAA4D;AAC5D,mDAAmD;AAEnD,eAAe;AACf,kCAAkC;AAClC,uBAAuB;AACvB,YAAY;AACZ,IAAI"}

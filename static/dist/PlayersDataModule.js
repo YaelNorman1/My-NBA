@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 class PlayersDataModule {
     constructor() {
-        this.playersTeam = {};
+        this.playersTeam = [];
     }
     getTeamPlayers(dataFromUser) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -23,17 +23,25 @@ class PlayersDataModule {
     generateNewTeamPlayers(dataFromUser) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.getTeamPlayers(dataFromUser).then(data => {
-                console.log(data);
+                // console.log(data)
                 let players = JSON.parse(data);
+                // this.playersTeam= []
                 for (const player of players) {
-                    console.log(player);
+                    // console.log(player)
                     const fullName = player.firstName + player.lastName;
                     const jerseyNum = player.jersey;
                     const position = player.pos;
-                    // this.playersTeam.append(new Player())
+                    // let p: Player= new Player (fullName,jerseyNum, position)      
+                    this.playersTeam.push({ name: fullName, jerseyNum: jerseyNum, position: position }); //p
                 }
+                // console.log(this.playersTeam)
             });
         });
+    }
+    getAllPlayers() {
+        const myClonedArray = [];
+        this.playersTeam.forEach(val => myClonedArray.push(Object.assign({}, val)));
+        return myClonedArray;
     }
 }
 //# sourceMappingURL=PlayersDataModule.js.map

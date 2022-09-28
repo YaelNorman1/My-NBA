@@ -1,10 +1,10 @@
 const playersDataModule = new PlayersDataModule(); 
-// const render = new Render();
+const render = new Render();
 
-$("#submitPlayers").on("click", function (){
+$("#submitPlayers").on("click", async function (){
     const dataFromUser= get_data_from_input();
-    playersDataModule.generateNewTeamPlayers(dataFromUser);
-
+    await playersDataModule.generateNewTeamPlayers(dataFromUser);
+    render.renderPlayersToScreen(playersDataModule.getAllPlayers())
 })
 
 
