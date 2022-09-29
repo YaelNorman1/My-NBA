@@ -9,37 +9,32 @@
     <title>My-NBA</title>
 </head>
 <body>
-    <!-- <form> -->
-        <div class="row">
-            <div class="col form-group">
-                <!-- <label>Team Name</label> -->
-                <input type="text" class="form-control" id="teamName" placeholder="Enter Team Name">
-            </div>
-            <div class="col form-group">
-                <!-- <label>Year</label> -->
-                <input type="number" class="form-control" id="year" placeholder="Enter Year">
-            </div>
-            <button type="submit" class="col btn btn-primary" id="submitPlayers">Submit</button>
+    <div class="row">
+        <div class="col form-group">
+            <input type="text" class="form-control" id="teamName" placeholder="Enter Team Name">
         </div>
-        <!-- <div class="card" style="width: 18rem;"> -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="player-container">
-                    </div>
-                </div>
-            </div>
-        <!-- </div> -->
+        <div class="col form-group">
+            <input type="number" class="form-control" id="year" placeholder="Enter Year">
+        </div>
+        <button type="submit" class="col btn btn-primary" id="submitPlayers">Submit</button>
     </div>
-    
-    <!-- </form> -->
-    
+    <div class="container">
+        <div class="row player-container">
+            <!-- <div class="player-container">
+            </div> -->
+        </div>
+    </div>
+        
+        
     <script id="player-template" type="text/x-handlebars-template">
-        <div class="card rounded text-center player-info">
-            <div class="card-body">
-                <div>{{player.fname}} {{player.lname}}</div>
-                <div>{{player.jerseyNum}}</div>
-                <img class="player-pic" src="https://nba-players.herokuapp.com/players/{{player.lname}}/{{player.fname}}">
-                <div>{{player.position}}</div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card rounded text-center player-info">
+                <div class="card-body">
+                    <div>{{player.fname}} {{player.lname}}</div>
+                    <div>{{player.jerseyNum}}</div>
+                    <img class="player-pic" src="https://nba-players.herokuapp.com/players/{{player.lname}}/{{player.fname}}" onerror="if (this.src != 'static/img/img_basketball.jpg') this.src= 'static/img/img_basketball.jpg';">
+                    <div>{{player.position}}</div>
+                </div>
             </div>
         </div>
     </script>
