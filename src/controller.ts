@@ -17,3 +17,9 @@ function get_data_from_input() : object{
         'year': year
         }
 }
+
+
+$("#flexSwitchCheck").on("click", function() {
+
+    const playersWithBirthDate= playersDataModule.getAllPlayers().filter(player => player)
+})
