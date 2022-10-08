@@ -3,11 +3,14 @@ class Player{
     lname : string;
     jerseyNum : number;
     position: string;
+    hasBirthDate: boolean;
 
-    constructor(fname: string, lname: string, jerseyNum: number, position: string){
+    constructor(fname: string, lname: string, jerseyNum: number, position: string, hasBirthDate: boolean){
         this.fname=fname
         this.lname=lname
         this.jerseyNum=jerseyNum
         this.position=position
+        this.hasBirthDate= hasBirthDate
+        console.log(this.hasBirthDate)
     }
 }

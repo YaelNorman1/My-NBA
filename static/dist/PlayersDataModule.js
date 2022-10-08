@@ -23,21 +23,24 @@ class PlayersDataModule {
     generateNewTeamPlayers(dataFromUser) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.getTeamPlayers(dataFromUser).then(data => {
-                // console.log(data)
                 let players = JSON.parse(data);
                 this.playersTeam.splice(0);
-                for (const player of players) {
-                    // console.log(player)
-                    const fname = player.firstName;
-                    const lname = player.lastName;
-                    const jerseyNum = player.jersey;
-                    const position = player.pos;
-                    // let p: Player= new Player (fullName,jerseyNum, position)      
-                    this.playersTeam.push({ fname: fname, lname: lname, jerseyNum: jerseyNum, position: position }); //p
-                }
-                // console.log(this.playersTeam)
+                this.assignDataToPlayer(players);
             });
         });
+    }
+    assignDataToPlayer(players) {
+        for (const player of players) {
+            const fname = player.firstName;
+            const lname = player.lastName;
+            const jerseyNum = player.jersey;
+            const position = player.pos;
+            let hasBirthDate = false;
+            if (player.hasOwnProperty("dateOfBirthUTC")) {
+                hasBirthDate = true;
+            }
+            this.playersTeam.push({ fname: fname, lname: lname, jerseyNum: jerseyNum, position: position, hasBirthDate: hasBirthDate });
+        }
     }
     getAllPlayers() {
         const myClonedArray = [];

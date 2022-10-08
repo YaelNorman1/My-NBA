@@ -18,21 +18,22 @@ class PlayersDataModule {
         await this.getTeamPlayers(dataFromUser).then(data => {
             let players= JSON.parse(data)
             this.playersTeam.splice(0)
-
-            for (const player of players){
-                const fname = player.firstName 
-                const lname = player.lastName
-                const jerseyNum = player.jersey
-                const position= player.pos
-                if (player.dateOfBirthUTC){
-                    const hasBirthDate= true
-                } else {
-                    const hasBirthDate= false
-                }     
-                //TODO: here i stoped. need to send hasBirthDate to Player constractor and filter hasBirthDate in controller
-                this.playersTeam.push({fname: fname, lname: lname, jerseyNum: jerseyNum, position: position})
-            }
+            this.assignDataToPlayer(players)
         })
+    }
+
+    assignDataToPlayer(players: any []){
+        for (const player of players){
+            const fname = player.firstName 
+            const lname = player.lastName
+            const jerseyNum = player.jersey
+            const position= player.pos
+            let hasBirthDate= false
+            if (player.hasOwnProperty("dateOfBirthUTC")){
+                hasBirthDate= true
+            }  
+            this.playersTeam.push({fname: fname, lname: lname, jerseyNum: jerseyNum, position: position, hasBirthDate: hasBirthDate})
+        }
     }
 
     getAllPlayers() : object[] {

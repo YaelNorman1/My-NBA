@@ -25,4 +25,8 @@ function get_data_from_input() {
         'year': year
     };
 }
+$("#flexSwitchCheck").on("click", function () {
+    //TODO: how to notify render that checkbox of birthday is on
+    const playersWithBirthDate = playersDataModule.getAllPlayers().filter(player => player);
+});
 //# sourceMappingURL=controller.js.map
