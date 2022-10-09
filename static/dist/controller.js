@@ -14,7 +14,8 @@ $("#submitPlayers").on("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
         const dataFromUser = get_data_from_input();
         yield playersDataModule.generateNewTeamPlayers(dataFromUser);
-        render.renderPlayersToScreen(playersDataModule.getAllPlayers());
+        let players = checkBoxBirthDate();
+        render.renderPlayersToScreen(players);
     });
 });
 function get_data_from_input() {
@@ -25,8 +26,12 @@ function get_data_from_input() {
         'year': year
     };
 }
-$("#flexSwitchCheck").on("click", function () {
-    //TODO: how to notify render that checkbox of birthday is on
-    const playersWithBirthDate = playersDataModule.getAllPlayers().filter(player => player);
-});
+function checkBoxBirthDate() {
+    if ($("#flexSwitchCheck").is(':checked')) {
+        return playersDataModule.getAllPlayers().filter(player => player["hasBirthDate"]);
+    }
+    else {
+        return playersDataModule.getAllPlayers();
+    }
+}
 //# sourceMappingURL=controller.js.map

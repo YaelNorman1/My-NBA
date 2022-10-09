@@ -36,7 +36,7 @@ class PlayersDataModule {
         }
     }
 
-    getAllPlayers() : object[] {
+    getAllPlayers() : any[] {
         const myClonedArray: object[] = [];
         this.playersTeam.forEach(val => myClonedArray.push(Object.assign({}, val)));     
         return myClonedArray
