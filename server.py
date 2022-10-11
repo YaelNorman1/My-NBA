@@ -1,6 +1,4 @@
-# from multiprocessing.connection import wait
-# from fastapi import Request
-from urllib.request import Request
+from fastapi import Request
 from fastapi import FastAPI
 from starlette.responses import FileResponse 
 from fastapi.staticfiles import StaticFiles
@@ -11,6 +9,7 @@ from dream_team import Dream_Team
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
+dream_team = Dream_Team()
 
 teams_id = {
     "lakers": "1610612747",
@@ -18,9 +17,6 @@ teams_id = {
     "heat": "1610612748",
     "suns": "1610612756"
 }
-
-dream_team = Dream_Team
-
 
 
 @app.get("/")
@@ -43,13 +39,23 @@ async def get_players_per_year_team(year, team_name):
 
 @app.get("/dream_team")
 def get_dream_team():
-
+    return json.dumps(dream_team.get_dream_team())
 
 
 @app.post("/dream_team")
 async def add_player_to_dream_team(request: Request):
     new_player= await request.json()
-    dream_team.append(new_player)
+    dream_team.add_player(new_player)
+    return dream_team.get_dream_team()
+    
+
+
+@app.delete("/dream_team")
+async def remove_player_from_dream_team(request: Request):
+    player_to_remove= await request.json()
+    dream_team.remove_player(player_to_remove["fullname"])
+    return dream_team.get_dream_team()
+
 
 
 

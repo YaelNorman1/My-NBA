@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const playersDataModule = new PlayersDataModule();
 const render = new Render();
+const apiHandler = new APIHandler();
 $("#submitPlayers").on("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
         const dataFromUser = get_data_from_input();
@@ -18,11 +19,33 @@ $("#submitPlayers").on("click", function () {
         render.renderPlayersToScreen(players);
     });
 });
-$("body").on("click", ".addToDreamTeam", function () {
-    let playerName = $(this).closest(".player-info").find(".fullName");
-    let playerJersyNum = $(this).closest(".player-info").find(".jerseyNum");
-    // console.log(player)
+$("#showDreamTeam").on("click", function () {
+    return __awaiter(this, void 0, void 0, function* () {
+        let dreamTeam = getDreamTeamFromServer();
+        dreamTeam.then((data) => {
+            console.log(data);
+            render.renderPlayersToScreen(data);
+        });
+    });
 });
+$("body").on("click", ".addToDreamTeam", function () {
+    let wantedPlayer = $(this).closest(".player-info");
+    let playerName = wantedPlayer.find(".fullName").text();
+    let playerJersyNum = wantedPlayer.find(".jerseyNum").text();
+    let playerPosition = wantedPlayer.find(".position").text();
+    let playerUrlPic = wantedPlayer.find(".player-pic").text();
+    const newPlayerDreamTeam = { fullname: playerName,
+        jersey_number: playerJersyNum,
+        position: playerPosition,
+        url_pic: playerUrlPic };
+    // apiHandler.addPlayerToDreamTeam(newPlayerDreamTeam);
+});
+function getDreamTeamFromServer() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const newTeam = yield apiHandler.getDreamTeam();
+        return newTeam;
+    });
+}
 function get_data_from_input() {
     const team_name = document.getElementById("teamName").value;
     const year = document.getElementById("year").value;
@@ -39,4 +62,3 @@ function checkBoxBirthDate() {
         return playersDataModule.getAllPlayers();
     }
 }
-//# sourceMappingURL=controller.js.map

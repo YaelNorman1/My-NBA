@@ -48,4 +48,3 @@ class PlayersDataModule {
         return myClonedArray;
     }
 }
-//# sourceMappingURL=PlayersDataModule.js.map

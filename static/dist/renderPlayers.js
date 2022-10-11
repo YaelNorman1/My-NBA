@@ -1,7 +1,6 @@
 "use strict";
 class Render {
     renderPlayersToScreen(players) {
-        // console.log(players)
         $('.player-container').empty();
         const source = $('#player-template').html();
         const template = Handlebars.compile(source);
@@ -11,4 +10,3 @@ class Render {
         }
     }
 }
-//# sourceMappingURL=renderPlayers.js.map

@@ -15,5 +15,5 @@ class Dream_Team:
         self.dream_team_array.append(Player(player))
 
 
-    def remove_player(self, fullname):
-        self.dream_team_array= list(filter(lambda player: player.fullname != fullname, self.dream_team_array))
+    def remove_player(self, first_name, last_name):
+        self.dream_team_array= list(filter(lambda player: player.first_name != first_name or player.last_name != last_name, self.dream_team_array))

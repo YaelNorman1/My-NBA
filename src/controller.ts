@@ -1,5 +1,6 @@
 const playersDataModule = new PlayersDataModule(); 
 const render = new Render();
+const apiHandler = new APIHandler();
 
 $("#submitPlayers").on("click", async function (){
     const dataFromUser= get_data_from_input();
@@ -9,13 +10,35 @@ $("#submitPlayers").on("click", async function (){
     render.renderPlayersToScreen(players)
 })
 
+$("#showDreamTeam").on("click",async function(){
+    let dreamTeam= getDreamTeamFromServer();
+    dreamTeam.then((data) => {
+        console.log(data)
+        render.renderPlayersToScreen(data)
+    })
+})
+
 
 $("body").on("click",".addToDreamTeam", function(){
-    let playerName= $(this).closest(".player-info").find(".fullName")
-    let playerJersyNum=  $(this).closest(".player-info").find(".jerseyNum")
-    // console.log(player)
+    let wantedPlayer= $(this).closest(".player-info")
+    let playerName= wantedPlayer.find(".fullName").text()
+    let playerJersyNum=  wantedPlayer.find(".jerseyNum").text()
+    let playerPosition=  wantedPlayer.find(".position").text()
+    let playerUrlPic=  wantedPlayer.find(".player-pic").text()
+
+    const newPlayerDreamTeam = {fullname: playerName,
+                                jersey_number: playerJersyNum,
+                                position: playerPosition,
+                                url_pic: playerUrlPic };
+
+    // apiHandler.addPlayerToDreamTeam(newPlayerDreamTeam);
 
 })
+
+async function getDreamTeamFromServer() : Promise<Player[]>{
+    const newTeam= await apiHandler.getDreamTeam();
+    return newTeam;
+}
 
 
 function get_data_from_input() : object{

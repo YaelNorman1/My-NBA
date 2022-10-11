@@ -9,23 +9,27 @@
     <title>My-NBA</title>
 </head>
 <body>
-    <div class="row">
-        <div class="col form-group">
-            <input type="text" class="form-control" id="teamName" placeholder="Enter Team Name">
-        </div>
-        <div class="col form-group">
-            <input type="number" class="form-control" id="year" placeholder="Enter Year">
-        </div>
-        <button type="submit" class="col btn btn-primary" id="submitPlayers">Submit</button>
-    </div>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheck">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Has Birth Date</label>
-      </div>
     <div class="container">
-        <div class="row player-container">
-            <!-- <div class="player-container">
-            </div> -->
+        <div class="row">
+            <div class="col form-group">
+                <input type="text" class="form-control" id="teamName" placeholder="Enter Team Name">
+            </div>
+            <div class="col form-group">
+                <input type="number" class="form-control" id="year" placeholder="Enter Year">
+            </div>
+            <button type="submit" class="col btn btn-primary" id="submitPlayers">Submit</button>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheck">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Show Players With Birth Date</label>
+        </div>
+        <button type="submit" class="col btn btn-secondary" id="showDreamTeam">Show Dream Team</button>
+
+        <div class="container">
+            <div class="row player-container">
+                <!-- <div class="player-container">
+                </div> -->
+            </div>
         </div>
     </div>
         
@@ -34,7 +38,7 @@
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card rounded text-center player-info">
                 <div class="card-body">
-                    <div class="fullName">{{player.fname}} {{player.lname}}</div>
+                    <span class="fName">{{player.fname}}</span> <span class="lName"> {{player.lname}}</span>
                     <div class="jerseyNum">{{player.jerseyNum}}</div>
                     <img class="player-pic" src="https://nba-players.herokuapp.com/players/{{player.lname}}/{{player.fname}}" onerror="if (this.src != 'static/img/img_basketball.png') this.src= 'static/img/img_basketball.png';">
                     <div class="position">{{player.position}}</div>
@@ -50,6 +54,7 @@
     <script src="/static/dist/player.js"></script>
     <script src="/static/dist/PlayersDataModule.js"></script>
     <script src="/static/dist/renderPlayers.js"></script>
+    <script src="/static/dist/apiHandler.js"></script>
     <script src="/static/dist/controller.js"></script>
 
 </body>

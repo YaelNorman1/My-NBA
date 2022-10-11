@@ -9,4 +9,3 @@ class Player {
         console.log(this.hasBirthDate);
     }
 }
-//# sourceMappingURL=player.js.map
