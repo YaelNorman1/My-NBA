@@ -10,6 +10,14 @@ $("#submitPlayers").on("click", async function (){
 })
 
 
+$("body").on("click",".addToDreamTeam", function(){
+    let playerName= $(this).closest(".player-info").find(".fullName")
+    let playerJersyNum=  $(this).closest(".player-info").find(".jerseyNum")
+    // console.log(player)
+
+})
+
+
 function get_data_from_input() : object{
     const team_name = (<HTMLInputElement>document.getElementById("teamName")).value;
     const year = (<HTMLInputElement>document.getElementById("year")).value;
@@ -27,5 +35,4 @@ function checkBoxBirthDate() : object[]{
     } else {
         return playersDataModule.getAllPlayers();
     }
-
 }
