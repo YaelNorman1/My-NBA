@@ -26,4 +26,24 @@ class APIHandler {
             return newPlayersArr;
         });
     }
+    addPlayerToDreamTeam(player) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let sendPlayerData;
+            // try{
+            sendPlayerData = yield $.post({
+                url: "./dream_team",
+                type: "post",
+                async: false,
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(player)
+            });
+            const playerJson = JSON.parse(sendPlayerData);
+            const newPlayer = this.savePlayerDreamTeam([playerJson]);
+            return newPlayer;
+            // } catch (err){
+            //     return {err:err}
+            // }
+        });
+    }
 }

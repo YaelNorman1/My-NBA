@@ -49,7 +49,6 @@ async def add_player_to_dream_team(request: Request):
     return dream_team.get_dream_team()
     
 
-
 @app.delete("/dream_team")
 async def remove_player_from_dream_team(request: Request):
     player_to_remove= await request.json()

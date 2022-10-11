@@ -30,16 +30,24 @@ $("#showDreamTeam").on("click", function () {
 });
 $("body").on("click", ".addToDreamTeam", function () {
     let wantedPlayer = $(this).closest(".player-info");
-    let playerName = wantedPlayer.find(".fullName").text();
+    let playerFirstName = wantedPlayer.find(".fName").text();
+    let playerLasttName = wantedPlayer.find(".lName").text();
     let playerJersyNum = wantedPlayer.find(".jerseyNum").text();
     let playerPosition = wantedPlayer.find(".position").text();
     let playerUrlPic = wantedPlayer.find(".player-pic").text();
-    const newPlayerDreamTeam = { fullname: playerName,
-        jersey_number: playerJersyNum,
-        position: playerPosition,
-        url_pic: playerUrlPic };
+    const newPlayerDreamTeam = new Player(playerFirstName, playerLasttName, playerJersyNum, playerPosition, true); //url_pic: playerUrlPic
+    let addNewPlayer = addPlayerToDreamTeam(newPlayerDreamTeam);
+    addNewPlayer.then((data) => {
+        $(this).hide();
+    });
     // apiHandler.addPlayerToDreamTeam(newPlayerDreamTeam);
 });
+function addPlayerToDreamTeam(player) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const newplayer = yield apiHandler.addPlayerToDreamTeam(player);
+        return newplayer;
+    });
+}
 function getDreamTeamFromServer() {
     return __awaiter(this, void 0, void 0, function* () {
         const newTeam = yield apiHandler.getDreamTeam();
