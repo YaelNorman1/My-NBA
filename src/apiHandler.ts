@@ -42,7 +42,6 @@ class APIHandler {
             contentType: "application/json",
             data: JSON.stringify(playerName)              
         })
-        // return deletePlayer;
     }
 
 }

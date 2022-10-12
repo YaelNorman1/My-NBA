@@ -41,7 +41,4 @@ class PlayersDataModule {
         this.playersTeam.forEach(val => myClonedArray.push(Object.assign({}, val)));     
         return myClonedArray
     }
-
-
-
 }

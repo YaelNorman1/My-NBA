@@ -12,9 +12,7 @@ class Dream_Team:
     
     
     def add_player(self, player):
-        
         self.dream_team_array.append(Player(player['fname'], player['lname'], player['jerseyNum'], player['position'], player['hasBirthDate']))
-        # print(self.dream_team_array)
 
 
     def remove_player(self, fname, lname):
