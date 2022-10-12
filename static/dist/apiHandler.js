@@ -12,7 +12,7 @@ class APIHandler {
     getDreamTeam() {
         return __awaiter(this, void 0, void 0, function* () {
             const dreamTeam = yield $.get(`./dream_team`);
-            const playersJson = JSON.parse(dreamTeam);
+            const playersJson = dreamTeam.dream_team;
             const players = this.savePlayerDreamTeam(playersJson);
             return players;
         });
@@ -29,7 +29,6 @@ class APIHandler {
     addPlayerToDreamTeam(player) {
         return __awaiter(this, void 0, void 0, function* () {
             let sendPlayerData;
-            // try{
             sendPlayerData = yield $.post({
                 url: "./dream_team",
                 type: "post",
@@ -38,12 +37,14 @@ class APIHandler {
                 contentType: "application/json",
                 data: JSON.stringify(player)
             });
-            const playerJson = JSON.parse(sendPlayerData);
-            const newPlayer = this.savePlayerDreamTeam([playerJson]);
+            const newPlayer = this.savePlayerDreamTeam(sendPlayerData);
             return newPlayer;
-            // } catch (err){
-            //     return {err:err}
-            // }
+        });
+    }
+    removePlayerFromDreamTeam(playerName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let deletePlayer;
+            // deletePlayer= await $.de
         });
     }
 }

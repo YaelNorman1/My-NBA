@@ -5,16 +5,15 @@ const apiHandler = new APIHandler();
 $("#submitPlayers").on("click", async function (){
     const dataFromUser= get_data_from_input();
     await playersDataModule.generateNewTeamPlayers(dataFromUser);
-    
     let players= checkBoxBirthDate();
     render.renderPlayersToScreen(players)
 })
 
+
 $("#showDreamTeam").on("click",async function(){
     let dreamTeam= getDreamTeamFromServer();
     dreamTeam.then((data) => {
-        console.log(data)
-        render.renderPlayersToScreen(data)
+        render.renderDreamTeamToScreen(data)
     })
 })
 
@@ -25,27 +24,36 @@ $("body").on("click",".addToDreamTeam", function(){
     let playerLasttName= wantedPlayer.find(".lName").text()
     let playerJersyNum=  wantedPlayer.find(".jerseyNum").text()
     let playerPosition=  wantedPlayer.find(".position").text()
-    let playerUrlPic=  wantedPlayer.find(".player-pic").text()
 
-    const newPlayerDreamTeam = new Player(playerFirstName,
-                                 playerLasttName,
-                                 playerJersyNum,
-                                 playerPosition,
-                                 true);//url_pic: playerUrlPic
+    const newPlayerDreamTeam = new Player(playerFirstName.trim(), playerLasttName.trim(), playerJersyNum, playerPosition, true);
 
     let addNewPlayer= addPlayerToDreamTeam(newPlayerDreamTeam);
     addNewPlayer.then((data)=> {
-        $(this).hide()
     })
+})
 
-    // apiHandler.addPlayerToDreamTeam(newPlayerDreamTeam);
+
+$("body").on("click",".deleteFromDreamTeam", function(){
+    let wantedPlayer= $(this).closest(".player-info")
+    let playerFirstName= wantedPlayer.find(".fName").text()
+    let playerLasttName= wantedPlayer.find(".lName").text()
+
+    let removePlayer= removePlayerFromDreamTeam({fname: playerFirstName, lname: playerLasttName})
 
 })
+
+
+async function removePlayerFromDreamTeam(playerName: object) : Promise<Player[]>{
+    const removePlayer= await apiHandler.removePlayerFromDreamTeam(playerName);
+    return removePlayer;
+}
+
 
 async function addPlayerToDreamTeam(player: Player) : Promise<Player[]>{
     const newplayer= await apiHandler.addPlayerToDreamTeam(player);
     return newplayer;
 }
+
 
 async function getDreamTeamFromServer() : Promise<Player[]>{
     const newTeam= await apiHandler.getDreamTeam();

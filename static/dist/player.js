@@ -6,6 +6,5 @@ class Player {
         this.jerseyNum = jerseyNum;
         this.position = position;
         this.hasBirthDate = hasBirthDate;
-        console.log(this.hasBirthDate);
     }
 }

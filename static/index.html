@@ -47,6 +47,19 @@
             </div>
         </div>
     </script>
+    <script id="dreamTeam-template" type="text/x-handlebars-template">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card rounded text-center player-info">
+                <div class="card-body">
+                    <span class="fName">{{player.fname}}</span> <span class="lName"> {{player.lname}}</span>
+                    <div class="jerseyNum">{{player.jerseyNum}}</div>
+                    <img class="player-pic" src="https://nba-players.herokuapp.com/players/{{player.lname}}/{{player.fname}}" onerror="if (this.src != 'static/img/img_basketball.png') this.src= 'static/img/img_basketball.png';">
+                    <div class="position">{{player.position}}</div>
+                </div>
+                <button type="submit" class="col btn btn-danger deleteFromDreamTeam">Delete From Dream Team</button>
+            </div>
+        </div>
+    </script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>

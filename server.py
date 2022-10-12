@@ -39,7 +39,7 @@ async def get_players_per_year_team(year, team_name):
 
 @app.get("/dream_team")
 def get_dream_team():
-    return json.dumps(dream_team.get_dream_team())
+    return {'dream_team': dream_team.get_dream_team()}
 
 
 @app.post("/dream_team")
@@ -52,7 +52,7 @@ async def add_player_to_dream_team(request: Request):
 @app.delete("/dream_team")
 async def remove_player_from_dream_team(request: Request):
     player_to_remove= await request.json()
-    dream_team.remove_player(player_to_remove["fullname"])
+    dream_team.remove_player(player_to_remove["fname"], player_to_remove["lname"])
     return dream_team.get_dream_team()
 
 

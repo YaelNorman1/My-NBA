@@ -23,8 +23,7 @@ $("#showDreamTeam").on("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
         let dreamTeam = getDreamTeamFromServer();
         dreamTeam.then((data) => {
-            console.log(data);
-            render.renderPlayersToScreen(data);
+            render.renderDreamTeamToScreen(data);
         });
     });
 });
@@ -34,14 +33,23 @@ $("body").on("click", ".addToDreamTeam", function () {
     let playerLasttName = wantedPlayer.find(".lName").text();
     let playerJersyNum = wantedPlayer.find(".jerseyNum").text();
     let playerPosition = wantedPlayer.find(".position").text();
-    let playerUrlPic = wantedPlayer.find(".player-pic").text();
-    const newPlayerDreamTeam = new Player(playerFirstName, playerLasttName, playerJersyNum, playerPosition, true); //url_pic: playerUrlPic
+    const newPlayerDreamTeam = new Player(playerFirstName.trim(), playerLasttName.trim(), playerJersyNum, playerPosition, true);
     let addNewPlayer = addPlayerToDreamTeam(newPlayerDreamTeam);
     addNewPlayer.then((data) => {
-        $(this).hide();
     });
-    // apiHandler.addPlayerToDreamTeam(newPlayerDreamTeam);
 });
+$("body").on("click", ".deleteFromDreamTeam", function () {
+    let wantedPlayer = $(this).closest(".player-info");
+    let playerFirstName = wantedPlayer.find(".fName").text();
+    let playerLasttName = wantedPlayer.find(".lName").text();
+    let removePlayer = removePlayerFromDreamTeam({ fname: playerFirstName, lname: playerLasttName });
+});
+function removePlayerFromDreamTeam(playerName) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const removePlayer = yield apiHandler.removePlayerFromDreamTeam(playerName);
+        return removePlayer;
+    });
+}
 function addPlayerToDreamTeam(player) {
     return __awaiter(this, void 0, void 0, function* () {
         const newplayer = yield apiHandler.addPlayerToDreamTeam(player);
