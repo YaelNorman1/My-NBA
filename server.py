@@ -56,9 +56,5 @@ async def remove_player_from_dream_team(request: Request):
     return dream_team.get_dream_team()
 
 
-
-
-
-
 if __name__ == "__main__":
     uvicorn.run("server:app", host="0.0.0.0", port=8080,reload=True)

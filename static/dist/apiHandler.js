@@ -43,8 +43,14 @@ class APIHandler {
     }
     removePlayerFromDreamTeam(playerName) {
         return __awaiter(this, void 0, void 0, function* () {
-            let deletePlayer;
-            // deletePlayer= await $.de
+            yield $.ajax({
+                url: "./dream_team",
+                type: "DELETE",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(playerName)
+            });
+            // return deletePlayer;
         });
     }
 }

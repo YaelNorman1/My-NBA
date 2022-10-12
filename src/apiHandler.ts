@@ -19,7 +19,7 @@ class APIHandler {
     }
 
 
-    async addPlayerToDreamTeam(player: Player) : Promise<Player []> {
+    async addPlayerToDreamTeam(player: Player) : Promise<Player[]> {
         let sendPlayerData: string;
         sendPlayerData= await $.post({
             url: "./dream_team",
@@ -34,10 +34,15 @@ class APIHandler {
     }
 
 
-    async removePlayerFromDreamTeam(playerName : object): Promise<Player> {
-        let deletePlayer: string;
-        // deletePlayer= await $.de
-
+    async removePlayerFromDreamTeam(playerName : object) {
+        await $.ajax({
+            url: "./dream_team",
+            type: "DELETE",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(playerName)              
+        })
+        // return deletePlayer;
     }
 
 }

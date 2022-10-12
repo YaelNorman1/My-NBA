@@ -21,10 +21,7 @@ $("#submitPlayers").on("click", function () {
 });
 $("#showDreamTeam").on("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
-        let dreamTeam = getDreamTeamFromServer();
-        dreamTeam.then((data) => {
-            render.renderDreamTeamToScreen(data);
-        });
+        getAndRenderDreamTeam();
     });
 });
 $("body").on("click", ".addToDreamTeam", function () {
@@ -35,21 +32,17 @@ $("body").on("click", ".addToDreamTeam", function () {
     let playerPosition = wantedPlayer.find(".position").text();
     const newPlayerDreamTeam = new Player(playerFirstName.trim(), playerLasttName.trim(), playerJersyNum, playerPosition, true);
     let addNewPlayer = addPlayerToDreamTeam(newPlayerDreamTeam);
-    addNewPlayer.then((data) => {
-    });
+    addNewPlayer.then((data) => { });
 });
 $("body").on("click", ".deleteFromDreamTeam", function () {
     let wantedPlayer = $(this).closest(".player-info");
     let playerFirstName = wantedPlayer.find(".fName").text();
     let playerLasttName = wantedPlayer.find(".lName").text();
-    let removePlayer = removePlayerFromDreamTeam({ fname: playerFirstName, lname: playerLasttName });
-});
-function removePlayerFromDreamTeam(playerName) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const removePlayer = yield apiHandler.removePlayerFromDreamTeam(playerName);
-        return removePlayer;
+    let removePlayer = apiHandler.removePlayerFromDreamTeam({ fname: playerFirstName.trim(), lname: playerLasttName.trim() });
+    removePlayer.then(() => {
+        getAndRenderDreamTeam();
     });
-}
+});
 function addPlayerToDreamTeam(player) {
     return __awaiter(this, void 0, void 0, function* () {
         const newplayer = yield apiHandler.addPlayerToDreamTeam(player);
@@ -60,6 +53,12 @@ function getDreamTeamFromServer() {
     return __awaiter(this, void 0, void 0, function* () {
         const newTeam = yield apiHandler.getDreamTeam();
         return newTeam;
+    });
+}
+function getAndRenderDreamTeam() {
+    let dreamTeam = getDreamTeamFromServer();
+    dreamTeam.then((data) => {
+        render.renderDreamTeamToScreen(data);
     });
 }
 function get_data_from_input() {

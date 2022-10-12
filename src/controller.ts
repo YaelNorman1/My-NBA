@@ -11,10 +11,7 @@ $("#submitPlayers").on("click", async function (){
 
 
 $("#showDreamTeam").on("click",async function(){
-    let dreamTeam= getDreamTeamFromServer();
-    dreamTeam.then((data) => {
-        render.renderDreamTeamToScreen(data)
-    })
+    getAndRenderDreamTeam();
 })
 
 
@@ -24,12 +21,10 @@ $("body").on("click",".addToDreamTeam", function(){
     let playerLasttName= wantedPlayer.find(".lName").text()
     let playerJersyNum=  wantedPlayer.find(".jerseyNum").text()
     let playerPosition=  wantedPlayer.find(".position").text()
-
     const newPlayerDreamTeam = new Player(playerFirstName.trim(), playerLasttName.trim(), playerJersyNum, playerPosition, true);
 
     let addNewPlayer= addPlayerToDreamTeam(newPlayerDreamTeam);
-    addNewPlayer.then((data)=> {
-    })
+    addNewPlayer.then((data)=> {})
 })
 
 
@@ -38,15 +33,11 @@ $("body").on("click",".deleteFromDreamTeam", function(){
     let playerFirstName= wantedPlayer.find(".fName").text()
     let playerLasttName= wantedPlayer.find(".lName").text()
 
-    let removePlayer= removePlayerFromDreamTeam({fname: playerFirstName, lname: playerLasttName})
-
+    let removePlayer= apiHandler.removePlayerFromDreamTeam({fname: playerFirstName.trim(), lname: playerLasttName.trim()})
+    removePlayer.then(() => {
+        getAndRenderDreamTeam();
+    })
 })
-
-
-async function removePlayerFromDreamTeam(playerName: object) : Promise<Player[]>{
-    const removePlayer= await apiHandler.removePlayerFromDreamTeam(playerName);
-    return removePlayer;
-}
 
 
 async function addPlayerToDreamTeam(player: Player) : Promise<Player[]>{
@@ -58,6 +49,14 @@ async function addPlayerToDreamTeam(player: Player) : Promise<Player[]>{
 async function getDreamTeamFromServer() : Promise<Player[]>{
     const newTeam= await apiHandler.getDreamTeam();
     return newTeam;
+}
+
+
+function getAndRenderDreamTeam(){
+    let dreamTeam= getDreamTeamFromServer();
+    dreamTeam.then((data) => {
+        render.renderDreamTeamToScreen(data)
+    })
 }
 
 
